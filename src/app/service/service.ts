@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class DataService {
   url = 'http://www.omdbapi.com/?';
-  apiKey = '55c72716'; // <-- Enter your own key here!
+  apiKey = 'yourKey'; // <-- Enter your own key here!
   
     constructor(private http: HttpClient){}
     detailedFilm: IFilm;
