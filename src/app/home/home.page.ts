@@ -10,15 +10,15 @@ import { DataService } from '../service/service';
 })
 export class HomePage implements OnInit{
   films : Observable<IFilm[]>;
-
+  title: string = '';
   constructor(private ServicesFilm: DataService) {}
 
   ngOnInit(){
-    this.getFilmList('Lord');
+    this.getFilmList();
   }
 
-  getFilmList(title): void{
-    this.films = this.ServicesFilm.getFilmList(title);
-  
+  getFilmList(): void{
+    this.films = this.ServicesFilm.getFilmList(this.title);
+    
   }
 }

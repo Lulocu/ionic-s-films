@@ -1,6 +1,6 @@
 export interface IFilm {
-    Title: string;
-    Year: Date;
-    Language: string;
-    Plot: string;
+    Title?: string;
+    Released?: Date;
+    Language?: string;
+    Plot?: string;
 }

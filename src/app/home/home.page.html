@@ -3,16 +3,26 @@
     <ion-title>
       Índice de películas
     </ion-title>
-    
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-searchbar [(ngModel)]="title" (ionChange)="getFilmList()" placeholder="Buscar">
+  </ion-searchbar>
+  <ion-list>
 
-  <ion-item button *ngFor="let pelicula of (films | async)" >
-    <ion-label text-wrap>
-      <h3>{{pelicula.Title}}</h3>
-      {{pelicula.Year}}
-    </ion-label>
- </ion-item>
+    <div *ngIf="(films | async)?.length>0; else loading">
+      <ion-item button *ngFor="let pelicula of (films | async)" [routerLink]="['/', 'pelicula', pelicula.Title]">
+        <ion-label text-wrap>
+          <h1>{{pelicula.Title}}</h1>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <ng-template #loading>
+      <p>Por favor, pruebe a hacer una búsqueda más precisa.</p>
+    </ng-template>
+
+  </ion-list>
 </ion-content>

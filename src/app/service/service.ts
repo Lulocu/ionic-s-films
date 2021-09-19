@@ -9,17 +9,23 @@ import { map } from 'rxjs/operators';
 })
 export class DataService {
   url = 'http://www.omdbapi.com/?';
-  apiKey = '&apikey=55c72716'; // <-- Enter your own key here!
+  apiKey = '55c72716'; // <-- Enter your own key here!
   
     constructor(private http: HttpClient){}
-    
+    detailedFilm: IFilm;
     public getFilmList(title: string){
       
-      let req = this.url+'s=\''+title+'\''+this.apiKey;
+      let req = this.url+'s=\''+title+'\'&type=movie&apikey='+this.apiKey;
   
       return this.http.get<IFilm[]>(req).pipe(map(results => results['Search']));
       
       //console.log(this.lista);
       
+    }
+    public getFilm(title: string){
+
+      let req = this.url+'t=\''+title+'\'&type=movie&apikey='+this.apiKey;
+  
+      return this.http.get<IFilm>(req).pipe(map(results => results));
     }
 }
